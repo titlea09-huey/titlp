@@ -1,0 +1,518 @@
+-- สร้าง ScreenGui ขึ้นมา
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "titlea09"
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+-- หน้าต่างหลัก (Main Frame)
+local MainFrame = Instance.new("Frame")
+MainFrame.Size = UDim2.new(0, 520, 0, 320)
+MainFrame.Position = UDim2.new(0.5, -260, 0.5, -160)
+MainFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 22)
+MainFrame.BorderSizePixel = 0
+MainFrame.ClipsDescendants = true
+MainFrame.Parent = ScreenGui
+
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0, 8)
+UICorner.Parent = MainFrame
+
+-- ภาพพื้นหลัง (ImageLabel)
+local BgImage = Instance.new("ImageLabel")
+BgImage.Size = UDim2.new(1, 0, 1, 0)
+BgImage.BackgroundTransparency = 1
+BgImage.Image = "rbxassetid://1000016465" -- ใช้ Asset ID ของภาพ
+BgImage.ScaleType = Enum.ScaleType.Crop
+BgImage.Parent = MainFrame
+
+-- เลเยอร์สีดำโปร่งใสทับภาพ ให้ตัวหนังสือและปุ่มยังอ่านง่ายไม่ลายตา
+local DarkOverlay = Instance.new("Frame")
+DarkOverlay.Size = UDim2.new(1, 0, 1, 0)
+DarkOverlay.BackgroundColor3 = Color3.fromRGB(10, 10, 15)
+DarkOverlay.BackgroundTransparency = 0.45
+DarkOverlay.BorderSizePixel = 0
+DarkOverlay.Parent = MainFrame
+
+-- แถบหัวข้อด้านบน (TopBar)
+local TopBar = Instance.new("Frame")
+TopBar.Size = UDim2.new(1, 0, 0, 38)
+TopBar.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
+TopBar.BackgroundTransparency = 0.2
+TopBar.BorderSizePixel = 0
+TopBar.Parent = MainFrame
+
+local TopCorner = Instance.new("UICorner")
+TopCorner.CornerRadius = UDim.new(0, 8)
+TopCorner.Parent = TopBar
+
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(0, 300, 1, 0)
+Title.Position = UDim2.new(0, 15, 0, 0)
+Title.BackgroundTransparency = 1
+Title.Text = "titlea09"
+Title.TextColor3 = Color3.fromRGB(220, 220, 240)
+Title.TextSize = 14
+Title.Font = Enum.Font.GothamBold
+Title.TextXAlignment = Enum.TextXAlignment.Left
+Title.Parent = TopBar
+
+-- ปุ่มกากบาท (ปิด/ลบสคริปต์ทิ้ง)
+local CloseBtn = Instance.new("TextButton")
+CloseBtn.Size = UDim2.new(0, 28, 0, 24)
+CloseBtn.Position = UDim2.new(1, -35, 0.5, -12)
+CloseBtn.BackgroundColor3 = Color3.fromRGB(235, 60, 60)
+CloseBtn.Text = "✕"
+CloseBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+CloseBtn.TextSize = 14
+CloseBtn.Font = Enum.Font.GothamBold
+CloseBtn.Parent = TopBar
+
+local CloseCorner = Instance.new("UICorner")
+CloseCorner.CornerRadius = UDim.new(0, 5)
+CloseCorner.Parent = CloseBtn
+
+-- ปุ่ม "-" (ย่อ UI)
+local MinimizeBtn = Instance.new("TextButton")
+MinimizeBtn.Size = UDim2.new(0, 28, 0, 24)
+MinimizeBtn.Position = UDim2.new(1, -68, 0.5, -12)
+MinimizeBtn.BackgroundColor3 = Color3.fromRGB(50, 50, 70)
+MinimizeBtn.Text = "-"
+MinimizeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+MinimizeBtn.TextSize = 16
+MinimizeBtn.Font = Enum.Font.GothamBold
+MinimizeBtn.Parent = TopBar
+
+local MinCorner = Instance.new("UICorner")
+MinCorner.CornerRadius = UDim.new(0, 5)
+MinCorner.Parent = MinimizeBtn
+
+-- ปุ่มเปิด UI เล็กๆ ลอยบนจอ (ตอนย่อ)
+local FloatBtn = Instance.new("TextButton")
+FloatBtn.Size = UDim2.new(0, 120, 0, 38)
+FloatBtn.Position = UDim2.new(0, 20, 0, 20)
+FloatBtn.BackgroundColor3 = Color3.fromRGB(40, 120, 255)
+FloatBtn.Text = "⚡ titlea09"
+FloatBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+FloatBtn.TextSize = 13
+FloatBtn.Font = Enum.Font.GothamBold
+FloatBtn.Visible = false
+FloatBtn.Parent = ScreenGui
+
+local FloatCorner = Instance.new("UICorner")
+FloatCorner.CornerRadius = UDim.new(0, 8)
+FloatCorner.Parent = FloatBtn
+
+-- แถบเมนูด้านซ้าย
+local SideTab = Instance.new("Frame")
+SideTab.Size = UDim2.new(0, 140, 0, 256)
+SideTab.Position = UDim2.new(0, 12, 0, 50)
+SideTab.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
+SideTab.BackgroundTransparency = 0.3
+SideTab.BorderSizePixel = 0
+SideTab.Parent = MainFrame
+
+local SideTabCorner = Instance.new("UICorner")
+SideTabCorner.CornerRadius = UDim.new(0, 6)
+SideTabCorner.Parent = SideTab
+
+-- ปุ่มเมนูตัวรันโค้ด
+local TabButton = Instance.new("TextButton")
+TabButton.Size = UDim2.new(1, -12, 0, 38)
+TabButton.Position = UDim2.new(0, 6, 0, 8)
+TabButton.BackgroundColor3 = Color3.fromRGB(35, 35, 50)
+TabButton.BackgroundTransparency = 0.2
+TabButton.Text = "       ตัวรันโค้ด"
+TabButton.TextColor3 = Color3.fromRGB(100, 200, 255)
+TabButton.TextSize = 12
+TabButton.Font = Enum.Font.GothamBold
+TabButton.TextXAlignment = Enum.TextXAlignment.Left
+TabButton.Parent = SideTab
+
+local TabCorner = Instance.new("UICorner")
+TabCorner.CornerRadius = UDim.new(0, 6)
+TabCorner.Parent = TabButton
+
+local Lightning = Instance.new("TextLabel")
+Lightning.Size = UDim2.new(0, 20, 1, 0)
+Lightning.Position = UDim2.new(0, 10, 0, 0)
+Lightning.BackgroundTransparency = 1
+Lightning.Text = "⚡"
+Lightning.TextColor3 = Color3.fromRGB(255, 200, 50)
+Lightning.TextSize = 13
+Lightning.Parent = TabButton
+
+-- ปุ่มประวัติบันทึก
+local HistoryBtn = Instance.new("TextButton")
+HistoryBtn.Size = UDim2.new(1, -12, 0, 38)
+HistoryBtn.Position = UDim2.new(0, 6, 0, 52)
+HistoryBtn.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
+HistoryBtn.BackgroundTransparency = 0.5
+HistoryBtn.Text = "       ประวัติบันทึก"
+HistoryBtn.TextColor3 = Color3.fromRGB(150, 150, 170)
+HistoryBtn.TextSize = 12
+HistoryBtn.Font = Enum.Font.Gotham
+HistoryBtn.TextXAlignment = Enum.TextXAlignment.Left
+HistoryBtn.Parent = SideTab
+
+local HistoryCorner = Instance.new("UICorner")
+HistoryCorner.CornerRadius = UDim.new(0, 6)
+HistoryCorner.Parent = HistoryBtn
+
+-- หน้าจอหลัก (ตัวรัน)
+local RunContainer = Instance.new("Frame")
+RunContainer.Size = UDim2.new(1, 0, 1, 0)
+RunContainer.BackgroundTransparency = 1
+RunContainer.Parent = MainFrame
+
+-- ช่องใส่โค้ด (TextBox)
+local CodeBox = Instance.new("TextBox")
+CodeBox.Size = UDim2.new(0, 340, 0, 120)
+CodeBox.Position = UDim2.new(0, 160, 0, 50)
+CodeBox.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
+CodeBox.BackgroundTransparency = 0.3
+CodeBox.TextColor3 = Color3.fromRGB(220, 220, 230)
+CodeBox.PlaceholderText = "วางโค้ด Luau / Roblox Script ที่นี่..."
+CodeBox.Text = ""
+CodeBox.TextSize = 12
+CodeBox.Font = Enum.Font.Code
+CodeBox.MultiLine = true
+CodeBox.ClearTextOnFocus = false
+CodeBox.TextXAlignment = Enum.TextXAlignment.Left
+CodeBox.TextYAlignment = Enum.TextYAlignment.Top
+CodeBox.Parent = RunContainer
+
+local CodeBoxCorner = Instance.new("UICorner")
+CodeBoxCorner.CornerRadius = UDim.new(0, 6)
+CodeBoxCorner.Parent = CodeBox
+
+-- เมนูเปิด-ปิด รันรัวๆ (0 วิ)
+local LoopFrame = Instance.new("Frame")
+LoopFrame.Size = UDim2.new(0, 340, 0, 32)
+LoopFrame.Position = UDim2.new(0, 160, 0, 178)
+LoopFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
+LoopFrame.BackgroundTransparency = 0.3
+LoopFrame.Parent = RunContainer
+
+local LoopCorner = Instance.new("UICorner")
+LoopCorner.CornerRadius = UDim.new(0, 6)
+LoopCorner.Parent = LoopFrame
+
+local LoopText = Instance.new("TextLabel")
+LoopText.Size = UDim2.new(0, 200, 1, 0)
+LoopText.Position = UDim2.new(0, 12, 0, 0)
+LoopText.BackgroundTransparency = 1
+LoopText.Text = "รันรัวๆ (ความเร็ว 0 วิ ⚡)"
+LoopText.TextColor3 = Color3.fromRGB(180, 180, 200)
+LoopText.TextSize = 12
+LoopText.Font = Enum.Font.Gotham
+LoopText.TextXAlignment = Enum.TextXAlignment.Left
+LoopText.Parent = LoopFrame
+
+local ToggleBtn = Instance.new("TextButton")
+ToggleBtn.Size = UDim2.new(0, 38, 0, 20)
+ToggleBtn.Position = UDim2.new(1, -46, 0.5, -10)
+ToggleBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 55)
+ToggleBtn.Text = ""
+ToggleBtn.Parent = LoopFrame
+
+local ToggleCorner = Instance.new("UICorner")
+ToggleCorner.CornerRadius = UDim.new(1, 0)
+ToggleCorner.Parent = ToggleBtn
+
+local ToggleCircle = Instance.new("Frame")
+ToggleCircle.Size = UDim2.new(0, 16, 0, 16)
+ToggleCircle.Position = UDim2.new(0, 2, 0.5, -8)
+ToggleCircle.BackgroundColor3 = Color3.fromRGB(200, 200, 200)
+ToggleCircle.Parent = ToggleBtn
+
+local CircleCorner = Instance.new("UICorner")
+CircleCorner.CornerRadius = UDim.new(1, 0)
+CircleCorner.Parent = ToggleCircle
+
+-- แถวปุ่มกดคำสั่ง
+local BtnContainer = Instance.new("Frame")
+BtnContainer.Size = UDim2.new(0, 340, 0, 72)
+BtnContainer.Position = UDim2.new(0, 160, 0, 216)
+BtnContainer.BackgroundTransparency = 1
+BtnContainer.Parent = RunContainer
+
+local CopyBtn = Instance.new("TextButton")
+CopyBtn.Size = UDim2.new(0, 165, 0, 32)
+CopyBtn.Position = UDim2.new(0, 0, 0, 0)
+CopyBtn.BackgroundColor3 = Color3.fromRGB(30, 30, 45)
+CopyBtn.BackgroundTransparency = 0.2
+CopyBtn.Text = "📋 คัดลอกโค้ด"
+CopyBtn.TextColor3 = Color3.fromRGB(200, 200, 220)
+CopyBtn.TextSize = 12
+CopyBtn.Font = Enum.Font.Gotham
+CopyBtn.Parent = BtnContainer
+local CopyCorner = Instance.new("UICorner") CopyCorner.CornerRadius = UDim.new(0, 5) CopyCorner.Parent = CopyBtn
+
+local ClearCodeBtn = Instance.new("TextButton")
+ClearCodeBtn.Size = UDim2.new(0, 165, 0, 32)
+ClearCodeBtn.Position = UDim2.new(1, -165, 0, 0)
+ClearCodeBtn.BackgroundColor3 = Color3.fromRGB(60, 30, 30)
+ClearCodeBtn.BackgroundTransparency = 0.2
+ClearCodeBtn.Text = "🗑️ ลบโค้ด"
+ClearCodeBtn.TextColor3 = Color3.fromRGB(255, 120, 120)
+ClearCodeBtn.TextSize = 12
+ClearCodeBtn.Font = Enum.Font.Gotham
+ClearCodeBtn.Parent = BtnContainer
+local ClearCodeCorner = Instance.new("UICorner") ClearCodeCorner.CornerRadius = UDim.new(0, 5) ClearCodeCorner.Parent = ClearCodeBtn
+
+local RunOnceBtn = Instance.new("TextButton")
+RunOnceBtn.Size = UDim2.new(0, 165, 0, 32)
+RunOnceBtn.Position = UDim2.new(0, 0, 0, 38)
+RunOnceBtn.BackgroundColor3 = Color3.fromRGB(30, 90, 160)
+RunOnceBtn.BackgroundTransparency = 0.2
+RunOnceBtn.Text = "▶ รันโค้ด 1 ครั้ง"
+RunOnceBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+RunOnceBtn.TextSize = 12
+RunOnceBtn.Font = Enum.Font.GothamBold
+RunOnceBtn.Parent = BtnContainer
+local RunOnceCorner = Instance.new("UICorner") RunOnceCorner.CornerRadius = UDim.new(0, 5) RunOnceCorner.Parent = RunOnceBtn
+
+local SaveBtn = Instance.new("TextButton")
+SaveBtn.Size = UDim2.new(0, 165, 0, 32)
+SaveBtn.Position = UDim2.new(1, -165, 0, 38)
+SaveBtn.BackgroundColor3 = Color3.fromRGB(40, 140, 70)
+SaveBtn.BackgroundTransparency = 0.2
+SaveBtn.Text = "💾 บันทึกโค้ด"
+SaveBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+SaveBtn.TextSize = 12
+SaveBtn.Font = Enum.Font.GothamBold
+SaveBtn.Parent = BtnContainer
+local SaveCorner = Instance.new("UICorner") SaveCorner.CornerRadius = UDim.new(0, 5) SaveCorner.Parent = SaveBtn
+
+-- หน้าจอประวัติบันทึก
+local HistoryContainer = Instance.new("ScrollingFrame")
+HistoryContainer.Size = UDim2.new(0, 340, 0, 220)
+HistoryContainer.Position = UDim2.new(0, 160, 0, 50)
+HistoryContainer.BackgroundTransparency = 1
+HistoryContainer.Visible = false
+HistoryContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
+HistoryContainer.ScrollBarThickness = 4
+HistoryContainer.Parent = MainFrame
+
+local ClearHistoryBtn = Instance.new("TextButton")
+ClearHistoryBtn.Size = UDim2.new(0, 340, 0, 32)
+ClearHistoryBtn.Position = UDim2.new(0, 160, 0, 276)
+ClearHistoryBtn.BackgroundColor3 = Color3.fromRGB(180, 40, 40)
+ClearHistoryBtn.BackgroundTransparency = 0.2
+ClearHistoryBtn.Text = "🗑️ ลบประวัติทั้งหมด"
+ClearHistoryBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+ClearHistoryBtn.TextSize = 12
+ClearHistoryBtn.Font = Enum.Font.GothamBold
+ClearHistoryBtn.Visible = false
+ClearHistoryBtn.Parent = MainFrame
+
+local ClearHistoryCorner = Instance.new("UICorner")
+ClearHistoryCorner.CornerRadius = UDim.new(0, 5)
+ClearHistoryCorner.Parent = ClearHistoryBtn
+
+local UIListLayout = Instance.new("UIListLayout")
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout.Padding = UDim.new(0, 5)
+UIListLayout.Parent = HistoryContainer
+
+-- ระบบบันทึกไฟล์
+local fileName = "XWackStore_History.json"
+local savedScripts = {}
+
+local function loadHistoryFromFile()
+    if readfile and isfile and isfile(fileName) then
+        local success, result = pcall(function()
+            return game:GetService("HttpService"):JSONDecode(readfile(fileName))
+        end)
+        if success and type(result) == "table" then
+            savedScripts = result
+        end
+    end
+end
+
+local function saveHistoryToFile()
+    if writefile then
+        pcall(function()
+            local encoded = game:GetService("HttpService"):JSONEncode(savedScripts)
+            writefile(fileName, encoded)
+        end)
+    end
+end
+
+loadHistoryFromFile()
+
+-- ฟังก์ชันสลับหน้าจอ
+TabButton.MouseButton1Click:Connect(function()
+    RunContainer.Visible = true
+    HistoryContainer.Visible = false
+    ClearHistoryBtn.Visible = false
+    TabButton.BackgroundColor3 = Color3.fromRGB(35, 35, 50)
+    TabButton.BackgroundTransparency = 0.2
+    TabButton.TextColor3 = Color3.fromRGB(100, 200, 255)
+    HistoryBtn.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
+    HistoryBtn.BackgroundTransparency = 0.5
+    HistoryBtn.TextColor3 = Color3.fromRGB(150, 150, 170)
+end)
+
+HistoryBtn.MouseButton1Click:Connect(function()
+    RunContainer.Visible = false
+    HistoryContainer.Visible = true
+    ClearHistoryBtn.Visible = true
+    HistoryBtn.BackgroundColor3 = Color3.fromRGB(35, 35, 50)
+    HistoryBtn.BackgroundTransparency = 0.2
+    HistoryBtn.TextColor3 = Color3.fromRGB(100, 200, 255)
+    TabButton.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
+    TabButton.BackgroundTransparency = 0.5
+    TabButton.TextColor3 = Color3.fromRGB(150, 150, 170)
+end)
+
+local function updateHistoryUI()
+    for _, child in pairs(HistoryContainer:GetChildren()) do
+        if child:IsA("Frame") then
+            child:Destroy()
+        end
+    end
+    
+    for i, scriptText in ipairs(savedScripts) do
+        local ItemFrame = Instance.new("Frame")
+        ItemFrame.Size = UDim2.new(1, -5, 0, 45)
+        ItemFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
+        ItemFrame.BackgroundTransparency = 0.3
+        ItemFrame.Parent = HistoryContainer
+        
+        local ItemCorner = Instance.new("UICorner")
+        ItemCorner.CornerRadius = UDim.new(0, 5)
+        ItemCorner.Parent = ItemFrame
+        
+        local Label = Instance.new("TextLabel")
+        Label.Size = UDim2.new(0, 180, 1, 0)
+        Label.Position = UDim2.new(0, 10, 0, 0)
+        Label.BackgroundTransparency = 1
+        Label.Text = "สคริปต์ " .. i .. ": " .. string.sub(scriptText, 1, 15) .. "..."
+        Label.TextColor3 = Color3.fromRGB(200, 200, 200)
+        Label.TextSize = 11
+        Label.Font = Enum.Font.Code
+        Label.TextXAlignment = Enum.TextXAlignment.Left
+        Label.Parent = ItemFrame
+        
+        local LoadBtn = Instance.new("TextButton")
+        LoadBtn.Size = UDim2.new(0, 60, 0, 28)
+        LoadBtn.Position = UDim2.new(1, -135, 0.5, -14)
+        LoadBtn.BackgroundColor3 = Color3.fromRGB(40, 120, 200)
+        LoadBtn.Text = "ดึงใช้"
+        LoadBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+        LoadBtn.TextSize = 11
+        LoadBtn.Font = Enum.Font.GothamBold
+        LoadBtn.Parent = ItemFrame
+        local LoadCorner = Instance.new("UICorner") LoadCorner.CornerRadius = UDim.new(0, 4) LoadCorner.Parent = LoadBtn
+        
+        local DeleteBtn = Instance.new("TextButton")
+        DeleteBtn.Size = UDim2.new(0, 60, 0, 28)
+        DeleteBtn.Position = UDim2.new(1, -70, 0.5, -14)
+        DeleteBtn.BackgroundColor3 = Color3.fromRGB(180, 40, 40)
+        DeleteBtn.Text = "ลบ"
+        DeleteBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+        DeleteBtn.TextSize = 11
+        DeleteBtn.Font = Enum.Font.GothamBold
+        DeleteBtn.Parent = ItemFrame
+        local DeleteCorner = Instance.new("UICorner") DeleteCorner.CornerRadius = UDim.new(0, 4) DeleteCorner.Parent = DeleteBtn
+        
+        LoadBtn.MouseButton1Click:Connect(function()
+            CodeBox.Text = scriptText
+            RunContainer.Visible = true
+            HistoryContainer.Visible = false
+            ClearHistoryBtn.Visible = false
+            TabButton.BackgroundColor3 = Color3.fromRGB(35, 35, 50)
+            TabButton.BackgroundTransparency = 0.2
+            TabButton.TextColor3 = Color3.fromRGB(100, 200, 255)
+            HistoryBtn.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
+            HistoryBtn.BackgroundTransparency = 0.5
+            HistoryBtn.TextColor3 = Color3.fromRGB(150, 150, 170)
+        end)
+
+        DeleteBtn.MouseButton1Click:Connect(function()
+            table.remove(savedScripts, i)
+            saveHistoryToFile()
+            updateHistoryUI()
+        end)
+    end
+    HistoryContainer.CanvasSize = UDim2.new(0, 0, 0, #savedScripts * 50)
+end
+
+updateHistoryUI()
+
+ClearHistoryBtn.MouseButton1Click:Connect(function()
+    savedScripts = {}
+    saveHistoryToFile()
+    updateHistoryUI()
+    ClearHistoryBtn.Text = "ลบทั้งหมดสำเร็จ! ✅"
+    task.wait(1)
+    ClearHistoryBtn.Text = "🗑️ ลบประวัติทั้งหมด"
+end)
+
+-- ระบบการรันโค้ด
+RunOnceBtn.MouseButton1Click:Connect(function()
+    if CodeBox.Text ~= "" then
+        pcall(function()
+            local func = loadstring(CodeBox.Text)
+            if func then func() end
+        end)
+    end
+end)
+
+CopyBtn.MouseButton1Click:Connect(function()
+    if setclipboard then setclipboard(CodeBox.Text) end
+end)
+
+ClearCodeBtn.MouseButton1Click:Connect(function()
+    CodeBox.Text = ""
+end)
+
+SaveBtn.MouseButton1Click:Connect(function()
+    if CodeBox.Text ~= "" then
+        table.insert(savedScripts, CodeBox.Text)
+        saveHistoryToFile()
+        updateHistoryUI()
+        SaveBtn.Text = "บันทึกสำเร็จ! ✅"
+        task.wait(1)
+        SaveBtn.Text = "💾 บันทึกโค้ด"
+    end
+end)
+
+local isLooping = false
+ToggleBtn.MouseButton1Click:Connect(function()
+    isLooping = not isLooping
+    if isLooping then
+        ToggleBtn.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
+        ToggleCircle:TweenPosition(UDim2.new(1, -18, 0.5, -8), "Out", "Quad", 0.15, true)
+    else
+        ToggleBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 55)
+        ToggleCircle:TweenPosition(UDim2.new(0, 2, 0.5, -8), "Out", "Quad", 0.15, true)
+    end
+end)
+
+task.spawn(function()
+    while true do
+        if isLooping then
+            pcall(function()
+                local func = loadstring(CodeBox.Text)
+                if func then func() end
+            end)
+        end
+        task.wait()
+    end
+end)
+
+CloseBtn.MouseButton1Click:Connect(function()
+    ScreenGui:Destroy()
+end)
+
+MinimizeBtn.MouseButton1Click:Connect(function()
+    MainFrame.Visible = false
+    FloatBtn.Visible = true
+end)
+
+FloatBtn.MouseButton1Click:Connect(function()
+    MainFrame.Visible = true
+    FloatBtn.Visible = false
+end)
